@@ -27,6 +27,9 @@ export default class UserController {
 
     static async login ( req: Request, res: Response, next: NextFunction ) {
         try {
+
+            const {email, password} :{email: string, password: string} = req.body;
+
             return sendResponse(res, 'success',{
                 message: 'user login success',
                 status: HttpStatusCode.OK,

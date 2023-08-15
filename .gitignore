@@ -7,3 +7,5 @@ dist
 logs
 yarn.lock
 package-lock.json
+bootsrap/
+serviceAccountKey.json

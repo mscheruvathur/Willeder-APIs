@@ -1,0 +1,1 @@
+type WithSnapShotId<T> = T & {id: string};
