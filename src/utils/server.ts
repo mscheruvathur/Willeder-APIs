@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import morgan from 'morgan'
 import cookieParser from "cookie-parser";
 import { throwErrorResponse } from "./response";
+import mainRouter from "api/router";
 export default async function createServer () {
 
     const app: Express = express();
@@ -53,6 +54,8 @@ export default async function createServer () {
 
 
     const versionPrefix = '/api/v1';
+
+    app.use(`${versionPrefix}/users`, mainRouter)
 
     app.use( ( err: Error, req: Request, res: Response, next: NextFunction ) => {
         const response = throwErrorResponse( res, err );

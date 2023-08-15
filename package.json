@@ -2,10 +2,10 @@
   "name": "cnat-apis",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.ts",
   "scripts": {
-    "build": "rm -rf dist && etsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist && tsc",
+    "test": "jest --detectOpenHandles --watchAll",
     "dev": "nodemon"
   },
   "keywords": [],
@@ -32,10 +32,13 @@
     "envalid": "^7.3.1",
     "express": "^4.18.2",
     "express-useragent": "^1.0.15",
+    "firebase-admin": "^11.10.1",
     "helmet": "^7.0.0",
+    "jose": "^4.14.4",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.3",
     "morgan": "^1.10.0",
+    "tsconfig-paths": "^4.2.0",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
   }

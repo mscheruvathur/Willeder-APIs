@@ -1,5 +1,6 @@
 {
     "watch": ["src"],
-    "ext": ".ts,.js",
-    "exec": "ts-node ./src/index.ts"
+    "ext": "ts,mjs,js,json",
+    "exec": "tsc && node -r tsconfig-paths/register -r ts-node/register ./dist/app.js",
+    "legacyWatch" : true
 }

@@ -36,10 +36,6 @@ const validateCORSOrigins = makeValidator( ( origins ) => {
 const env = cleanEnv(
     process.env, {
 
-    DATABASE_URL: url( {
-        desc: 'DATABASE_URL for MongoDB database'
-    } ),
-
     INSTANCES: num( { default: 1, devDefault: 1 } ),
 
 
