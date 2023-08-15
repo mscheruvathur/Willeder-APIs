@@ -2,22 +2,21 @@ import { Request, Response, NextFunction } from "express";
 import { APIError } from "exceptions";
 import { sendResponse, throwErrorResponse } from "utils/response";
 import HttpStatusCode from "constants/status";
+import * as userService  from '../../service/auth'
 
 export default class UserController {
     static async register ( req: Request, res: Response, next: NextFunction ) {
         try {
 
-            const {email, password, name, mobile, address }: {email: string, password: string, name: string, mobile: string, address: string} = req.body;
+            const {email, password, name, phone, address }: {email: string, password: string, name: string, phone: string, address: string} = req.body;
+
+            await userService.createUser(email, password, name, phone, address)
 
             return sendResponse(res, 'success', {
                 message: 'user registered successfully',
                 status: HttpStatusCode.CREATED,
                 data: {
-                    email: email,
-                    password: password,
-                    name: name,
-                    mobile: mobile,
-                    address: address
+                    email: email
                 }
             })
         } catch ( err ) {

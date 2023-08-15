@@ -1,9 +1,5 @@
 import admin, { firestore } from "firebase-admin";
-import env from "constants/env";
-
-const credentials = require('../serviceAccountKey.json')
-
-
+const credentials = require('../../bootstrap/serviceAccountKey.json')
 admin.initializeApp( {
     credential: admin.credential.cert( credentials )
 } );
