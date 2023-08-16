@@ -1,13 +1,30 @@
 {
     "compilerOptions": {
-        "module": "NodeNext",
+        "target": "ES2016",
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "CommonJS",
         "moduleResolution": "Node",
-        "baseUrl": "src",
-        "outDir": "dist",
+        "baseUrl": "./src",
+        "outDir": "./dist",
         "sourceMap": true,
         "noImplicitAny": true,
         "resolveJsonModule": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "types": ["jest", "node"],
+        "paths": {
+            "@lib/*": ["lib/*"],
+            "@constants/*": ["constants/*"],
+            "@models/*": ["models/*"],
+            "@utils/*": ["utils/*"]
+        }
     },
-    "include": ["src/**/*"]
+    "ts-node": {
+        "files": true,
+        "transpileOnly": true
+    },
+    "include": ["src/**/*"],
+    "files": ["./src/@types/express/express.d.ts"]
 }

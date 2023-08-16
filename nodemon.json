@@ -1,5 +1,9 @@
 {
     "watch": ["src"],
+    "ignore": [
+        "src/**/*.test.ts",
+        "node_modules"
+    ],
     "ext": "ts,mjs,js,json",
     "exec": "tsc && node -r tsconfig-paths/register -r ts-node/register ./dist/app.js",
     "legacyWatch" : true

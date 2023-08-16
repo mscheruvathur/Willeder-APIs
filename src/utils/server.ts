@@ -7,6 +7,8 @@ import morgan from 'morgan'
 import cookieParser from "cookie-parser";
 import { throwErrorResponse } from "./response";
 import mainRouter from "api/router";
+import { getAllowedOrigins } from "./cors";
+
 export default async function createServer () {
 
     const app: Express = express();
@@ -17,12 +19,16 @@ export default async function createServer () {
                 if ( origin.includes( 'localhost' ) ) {
                     logger.info( 'CORS: Localhost' );
                     return callback( null, [ origin ] );
+                } else {
+                    const allowedOrigins = await getAllowedOrigins();
+                    return callback( null, allowedOrigins );
                 }
-                const allowedOrigins: string[] = [];
-                return callback( null, allowedOrigins );
+
+            } else {
+                logger.info( 'CORS: No origin' );
+                callback( null, '*' );
             }
-            logger.info( 'CORS: No origin' );
-            callback( null, '*' );
+
         },
         credentials: true,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
@@ -30,7 +36,7 @@ export default async function createServer () {
 
     app.set( 'trust proxy', true );
     app.use( ua.express() );
-    app.use( helmet() );
+    app.use( helmet( {} ) );
 
     app.use(
         morgan( ':method :url :status :res[content-length] - :response-time ms', {
@@ -55,7 +61,7 @@ export default async function createServer () {
 
     const versionPrefix = '/api/v1';
 
-    app.use(`${versionPrefix}/users`, mainRouter)
+    app.use( `${ versionPrefix }/users`, mainRouter )
 
     app.use( ( err: Error, req: Request, res: Response, next: NextFunction ) => {
         const response = throwErrorResponse( res, err );

@@ -1,13 +1,19 @@
 import dayjs from 'dayjs'
+
+// import { parse, format } from 'date-fns';
 export const getCurrentJST = () => {
-    const currentJST = dayjs().startOf('month').add(1, 'day').set('year', 2018).format('YYYY-MM-DD HH:mm:ss');
-    return currentJST
+
+    const currentDate = dayjs();
+    const formattedDate = currentDate.format('YYYY-MM-DD HH:mm:ss');
+    console.log(formattedDate)
+    return formattedDate;
+   
 }
 
-export const getAddToCurrentJST = ( num: number, unit: dayjs.ManipulateType ) => {
-    //TODO
-}
+// export const getAddToCurrentJST = ( num: number, unit: dayjs.ManipulateType ) => {
+//     //TODO
+// }
 
-export const isAfterCurrentJST = ( time: string ) => {
-    //TODO 
-}
+// export const isAfterCurrentJST = ( time: string ) => {
+//     //TODO 
+// }

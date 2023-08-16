@@ -16,7 +16,7 @@ export type UserDocument = {
 
 export type UserDocumentWithId = WithSnapShotId<UserDocument>;
 
-export const USER_COLLECTION_KEY = 'mscheruvathur';
+export const USER_COLLECTION_KEY = 'users';
 
 export const userConverter: FirestoreDataConverter<UserDocumentWithId> = {
     toFirestore ( doc ): DocumentData {

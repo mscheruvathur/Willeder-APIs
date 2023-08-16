@@ -3,7 +3,7 @@ export class APIError extends Error {
 
     statusCode: number;
     operationErrorCode?: string;
-    errorData: {};
+    errorData = {};
 
     constructor ( message: string, statusCode: number, name?: string, operationErrorCode?: string ) {
         super( name );
