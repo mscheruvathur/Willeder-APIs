@@ -1,5 +1,5 @@
 import { config } from 'dotenv'
-import { EnvError, cleanEnv, makeValidator, num, port, str, url } from 'envalid'
+import { EnvError, bool, cleanEnv, makeValidator, num, port, str, url } from 'envalid'
 
 config();
 
@@ -44,7 +44,19 @@ const env = cleanEnv(
 
     NODE_ENV: str( { choices: [ 'development', 'production', 'staging' ] } ),
     CORS_ORIGINS: validateCORSOrigins(),
-    JWT_ISSUER: str()
+
+    // Cookie + CORS Config
+    COOKIE_DOMAIN: str(),
+    CONTROL_PANEL_COOKIE_DOMAIN: str(),
+    COOKIE_SECURE: bool(),
+    COOKIE_SAME_SITE: str({
+        choices: ['lax', 'strict', 'none'] as const,
+        default: 'strict'
+    }),
+
+    // JWT Config
+    JWT_AUDIENCE: str(),
+    JWT_ISSUER: str(),
 
 } );
 
